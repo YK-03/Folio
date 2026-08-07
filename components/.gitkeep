@@ -1,0 +1,28 @@
+/**
+ * components/.gitkeep
+ *
+ * This directory will hold all React components.
+ *
+ * Suggested sub-structure (create as you build the UI):
+ *
+ *   components/
+ *   ├── auth/
+ *   │   ├── LoginForm.tsx       — 'use client' form for /login
+ *   │   └── SignupForm.tsx      — 'use client' form for /signup
+ *   ├── notes/
+ *   │   ├── NoteList.tsx        — renders the grid/list of NoteCard items
+ *   │   ├── NoteCard.tsx        — single note preview card
+ *   │   ├── NoteEditor.tsx      — create/edit note modal or drawer
+ *   │   ├── FilterBar.tsx       — tag filter chips
+ *   │   └── SearchInput.tsx     — search field with debounce
+ *   ├── tags/
+ *   │   └── TagBadge.tsx        — styled tag pill
+ *   └── ui/
+ *       ├── Button.tsx          — shared button with variants
+ *       ├── Input.tsx           — shared form input
+ *       ├── Modal.tsx           — generic modal wrapper
+ *       └── Spinner.tsx         — loading indicator
+ *
+ * The file you're reading now is just a placeholder to keep the directory
+ * tracked by Git. Delete it when you add the first real component.
+ */

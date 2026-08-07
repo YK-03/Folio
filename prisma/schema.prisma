@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  avatarId     String   @default("spider-man")
+  createdAt    DateTime @default(now())
+
+  notes Note[]
+  tags  Tag[]
+  images Image[]
+
+  @@map("users")
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+
+  user User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tags NoteTag[]
+  images Image[]
+
+  @@index([userId])
+  @@index([userId, createdAt])
+  @@map("notes")
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  filename   String
+  mimeType   String
+  size       Int
+  storagePath String
+  createdAt  DateTime @default(now())
+  userId     String
+  noteId     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  note Note? @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([noteId])
+  @@map("images")
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  userId    String
+
+  user  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notes NoteTag[]
+
+  @@unique([userId, name])
+  @@index([userId])
+  @@map("tags")
+}
+
+model NoteTag {
+  noteId String
+  tagId  String
+
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([noteId, tagId])
+  @@index([tagId])
+  @@map("note_tags")
+}

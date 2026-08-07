@@ -1,0 +1,36 @@
+# ─── Dependencies ──────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Build output ──────────────────────────────────────────────────────────────
+.next/
+out/
+build/
+dist/
+
+# ─── Environment ───────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ─── Testing ───────────────────────────────────────────────────────────────────
+coverage/
+
+# ─── Uploads / runtime artifacts ───────────────────────────────────────────────
+public/uploads/*
+storage/*
+vitest-report.json
+
+# ─── Editor / OS ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# ─── TypeScript ────────────────────────────────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts

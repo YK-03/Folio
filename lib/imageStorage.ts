@@ -8,6 +8,11 @@ export async function saveImageFile(
     .toString(36)
     .slice(2)}-${originalName}`;
 
+  console.log(
+    'Has Blob Token:',
+    !!process.env.BLOB_READ_WRITE_TOKEN,
+  );
+
   const blob = await put(safeName, Buffer.from(buffer), {
     access: 'public',
     addRandomSuffix: false,
